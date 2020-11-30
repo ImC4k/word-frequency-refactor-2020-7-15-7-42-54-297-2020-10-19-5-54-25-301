@@ -4,4 +4,5 @@
 1. extract magic constants
 1. remove redundant logic
 1. remove unused code
-1. long method
+1. break down long method
+1. remove redundant comment

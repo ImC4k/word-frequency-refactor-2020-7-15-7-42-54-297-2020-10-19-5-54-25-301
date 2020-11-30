@@ -8,7 +8,6 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         try {
-            //split the input string with 1 to n pieces of spaces
             List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
 
             wordFrequencyList.sort((wordFrequency1, wordFrequency2) -> wordFrequency2.getFrequency() - wordFrequency1.getFrequency());
