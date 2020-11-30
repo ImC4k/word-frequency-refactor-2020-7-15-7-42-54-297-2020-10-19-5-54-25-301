@@ -1,5 +1,6 @@
 ### Refactored content
 
-1. meaningless variable names
-1. magic constants
-1. redundant logic
+1. rename meaningless variable names
+1. extract magic constants
+1. remove redundant logic
+1. remove unused code
