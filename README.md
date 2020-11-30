@@ -8,3 +8,5 @@
 1. remove redundant comment
 1. change to inline function, use streaming api
 1. mark variable as final
+1. remove public keyword in tests
+1. remove unthrown exceptions in tests
