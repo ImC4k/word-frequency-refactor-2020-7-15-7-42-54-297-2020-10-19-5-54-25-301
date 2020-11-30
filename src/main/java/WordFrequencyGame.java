@@ -20,7 +20,7 @@ public class WordFrequencyGame {
 
     private String generateWordFrequencyReport(List<WordFrequency> wordFrequencyList) {
         StringJoiner wordFrequencyResultJoiner = new StringJoiner(LINE_FEED);
-        wordFrequencyList.stream().map(wordFrequency -> generateWordFrequencyResultLine(wordFrequency)).forEach(wordFrequencyResultLine -> wordFrequencyResultJoiner.add(wordFrequencyResultLine));
+        wordFrequencyList.stream().map(this::generateWordFrequencyResultLine).forEach(wordFrequencyResultJoiner::add);
         return wordFrequencyResultJoiner.toString();
     }
 
