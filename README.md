@@ -7,3 +7,4 @@
 1. break down long method
 1. remove redundant comment
 1. change to inline function, use streaming api
+1. mark variable as final

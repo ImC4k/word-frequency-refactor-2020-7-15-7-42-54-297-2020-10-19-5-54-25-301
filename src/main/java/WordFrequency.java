@@ -1,6 +1,6 @@
 public class WordFrequency {
-    private String word;
-    private int frequency;
+    private final String word;
+    private final int frequency;
 
     public WordFrequency(String w, int i) {
         this.word = w;
