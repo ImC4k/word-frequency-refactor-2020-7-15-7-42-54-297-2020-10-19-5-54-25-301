@@ -37,7 +37,7 @@ class WordFrequencyGameTest {
     }
 
     @Test
-    void should_pracess_two_same_words_with_sorted() {
+    void should_process_two_same_words_with_sorted() {
         //Given
         String inputStr = "the the is";
         String expectResult = "the 2\nis 1";

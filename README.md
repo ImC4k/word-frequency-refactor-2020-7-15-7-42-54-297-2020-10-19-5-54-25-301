@@ -10,3 +10,4 @@
 1. mark variable as final
 1. remove public keyword in tests
 1. remove unthrown exceptions in tests
+1. renamed test method
