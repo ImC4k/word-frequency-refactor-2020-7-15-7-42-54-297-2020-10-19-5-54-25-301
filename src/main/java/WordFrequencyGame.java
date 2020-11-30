@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
@@ -12,57 +9,33 @@ public class WordFrequencyGame {
     public String getResult(String sentence) {
         try {
             //split the input string with 1 to n pieces of spaces
-            String[] words = sentence.split(WHITE_SPACE_REGEX);
-
-            List<WordFrequency> wordFrequencyList = new ArrayList<>();
-            for (String word : words) {
-                WordFrequency wordFrequency = new WordFrequency(word, 1);
-                wordFrequencyList.add(wordFrequency);
-            }
-
-            //get the map for the next step of sizing the same word
-            Map<String, List<WordFrequency>> wordToFrequencyListMap = getListMap(wordFrequencyList);
-
-            List<WordFrequency> list = new ArrayList<>();
-            for (Map.Entry<String, List<WordFrequency>> entry : wordToFrequencyListMap.entrySet()) {
-                WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
-                list.add(wordFrequency);
-            }
-            wordFrequencyList = list;
+            List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
 
             wordFrequencyList.sort((wordFrequency1, wordFrequency2) -> wordFrequency2.getFrequency() - wordFrequency1.getFrequency());
 
-            StringJoiner wordFrequencyResultJoiner = new StringJoiner(LINE_FEED);
-            for (WordFrequency wordFrequency : wordFrequencyList) {
-                String wordFrequencyResultLine = generateWordFrequencyResultLine(wordFrequency);
-                wordFrequencyResultJoiner.add(wordFrequencyResultLine);
-            }
-            return wordFrequencyResultJoiner.toString();
+            return generateWordFrequencyReport(wordFrequencyList);
         } catch (Exception e) {
             return "Calculate Error";
         }
     }
 
+    private String generateWordFrequencyReport(List<WordFrequency> wordFrequencyList) {
+        StringJoiner wordFrequencyResultJoiner = new StringJoiner(LINE_FEED);
+        for (WordFrequency wordFrequency : wordFrequencyList) {
+            String wordFrequencyResultLine = generateWordFrequencyResultLine(wordFrequency);
+            wordFrequencyResultJoiner.add(wordFrequencyResultLine);
+        }
+        return wordFrequencyResultJoiner.toString();
+    }
+
+    private List<WordFrequency> calculateWordFrequency(String sentence) {
+        List<String> words = Arrays.stream(sentence.split(WHITE_SPACE_REGEX)).collect(Collectors.toList());
+        HashSet<String> distinctWords = new HashSet<>(words);
+        return distinctWords.stream().map(distinctWord -> new WordFrequency(distinctWord, (int) words.stream().filter(word -> word.equals(distinctWord)).count())).collect(Collectors.toList());
+    }
+
     private String generateWordFrequencyResultLine(WordFrequency wordFrequency) {
         return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getFrequency());
     }
-
-
-    private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> wordFrequencyList) {
-        Map<String, List<WordFrequency>> wordToFrequencyListMap = new HashMap<>();
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            if (!wordToFrequencyListMap.containsKey(wordFrequency.getWord())) {
-                ArrayList frequencyList = new ArrayList<>();
-                frequencyList.add(wordFrequency);
-                wordToFrequencyListMap.put(wordFrequency.getWord(), frequencyList);
-            } else {
-                wordToFrequencyListMap.get(wordFrequency.getWord()).add(wordFrequency);
-            }
-        }
-
-
-        return wordToFrequencyListMap;
-    }
-
 
 }
