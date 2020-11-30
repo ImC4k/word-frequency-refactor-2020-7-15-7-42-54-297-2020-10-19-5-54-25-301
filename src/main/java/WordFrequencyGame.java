@@ -14,7 +14,7 @@ public class WordFrequencyGame {
             wordFrequencyList.sort((wordFrequency1, wordFrequency2) -> wordFrequency2.getFrequency() - wordFrequency1.getFrequency());
 
             return generateWordFrequencyReport(wordFrequencyList);
-        } catch (Exception e) {
+        } catch (Exception exception) {
             return "Calculate Error";
         }
     }
