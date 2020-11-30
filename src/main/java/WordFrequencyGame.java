@@ -30,7 +30,7 @@ public class WordFrequencyGame {
             }
             wordFrequencyList = list;
 
-            wordFrequencyList.sort((wordFrequency1, wordFrequency2) -> wordFrequency2.getWordCount() - wordFrequency1.getWordCount());
+            wordFrequencyList.sort((wordFrequency1, wordFrequency2) -> wordFrequency2.getFrequency() - wordFrequency1.getFrequency());
 
             StringJoiner wordFrequencyResultJoiner = new StringJoiner(LINE_FEED);
             for (WordFrequency wordFrequency : wordFrequencyList) {
@@ -44,7 +44,7 @@ public class WordFrequencyGame {
     }
 
     private String generateWordFrequencyResultLine(WordFrequency wordFrequency) {
-        return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
+        return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getFrequency());
     }
 
 
