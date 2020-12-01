@@ -6,7 +6,7 @@ public class WordFrequencyGame {
     private static final String WHITE_SPACE_REGEX = "\\s+";
     private static final String LINE_FEED = "\n";
 
-    public String getResult(String sentence) { // todo test null pointer for sentence
+    public String getResult(String sentence) {
         try {
             List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
 
@@ -14,7 +14,6 @@ public class WordFrequencyGame {
 
             return generateWordFrequencyReport(wordFrequencyList);
         } catch (Exception exception) {
-            // new Exception todo
             return "Calculate Error";
         }
     }
