@@ -11,3 +11,4 @@
 1. remove public keyword in tests
 1. remove unthrown exceptions in tests
 1. renamed test method
+1. mark properties as private

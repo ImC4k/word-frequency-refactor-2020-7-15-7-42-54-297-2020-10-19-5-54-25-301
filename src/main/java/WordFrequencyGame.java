@@ -3,10 +3,10 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
-    public static final String WHITE_SPACE_REGEX = "\\s+";
-    public static final String LINE_FEED = "\n";
+    private static final String WHITE_SPACE_REGEX = "\\s+";
+    private static final String LINE_FEED = "\n";
 
-    public String getResult(String sentence) {
+    public String getResult(String sentence) { // todo test null pointer for sentence
         try {
             List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
 
@@ -14,6 +14,7 @@ public class WordFrequencyGame {
 
             return generateWordFrequencyReport(wordFrequencyList);
         } catch (Exception exception) {
+            // new Exception todo
             return "Calculate Error";
         }
     }
@@ -27,7 +28,7 @@ public class WordFrequencyGame {
     private List<WordFrequency> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.stream(sentence.split(WHITE_SPACE_REGEX)).collect(Collectors.toList());
         HashSet<String> distinctWords = new HashSet<>(words);
-        return distinctWords.stream().map(distinctWord -> new WordFrequency(distinctWord, (int) words.stream().filter(word -> word.equals(distinctWord)).count())).collect(Collectors.toList());
+        return distinctWords.stream().map(distinctWord -> new WordFrequency(distinctWord, (int) words.stream().filter(word -> word.equals(distinctWord)).count())).collect(Collectors.toList()); // todo extract new method
     }
 
     private String generateWordFrequencyResultLine(WordFrequency wordFrequency) {
