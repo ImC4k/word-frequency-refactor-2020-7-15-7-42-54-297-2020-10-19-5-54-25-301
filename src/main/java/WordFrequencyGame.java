@@ -28,7 +28,11 @@ public class WordFrequencyGame {
     private List<WordFrequency> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.stream(sentence.split(WHITE_SPACE_REGEX)).collect(Collectors.toList());
         HashSet<String> distinctWords = new HashSet<>(words);
-        return distinctWords.stream().map(distinctWord -> new WordFrequency(distinctWord, (int) words.stream().filter(word -> word.equals(distinctWord)).count())).collect(Collectors.toList()); // todo extract new method
+        return distinctWords.stream().map(distinctWord -> new WordFrequency(distinctWord, getWordFrequency(words, distinctWord))).collect(Collectors.toList());
+    }
+
+    private int getWordFrequency(List<String> words, String distinctWord) {
+        return (int) words.stream().filter(word -> word.equals(distinctWord)).count();
     }
 
     private String generateWordFrequencyResultLine(WordFrequency wordFrequency) {
